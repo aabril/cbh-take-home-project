@@ -1,4 +1,7 @@
-const { deterministicPartitionKey } = require("./dpk");
+const { 
+  deterministicPartitionKey,
+  MAX_PARTITION_KEY_LENGTH
+} = require("./dpk");
 
 describe("deterministicPartitionKey", () => {
   it("returns the literal '0' when given no input", () => {
@@ -33,9 +36,10 @@ describe("deterministicPartitionKey", () => {
   });
 
   it("generates a deterministic partition key when the length exceeds the limit", () => {
-    const longKey = "a".repeat(300);
-    const trivialKey = deterministicPartitionKey(longKey);
+    const event = { partitionKey:  "a".repeat(300) };
+    const trivialKey = deterministicPartitionKey(event);
     expect(typeof trivialKey).toBe("string");
+    expect(trivialKey.length).toBeLessThanOrEqual(MAX_PARTITION_KEY_LENGTH);
     expect(trivialKey.length).toBeGreaterThan(0);
   });
 
