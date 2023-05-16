@@ -6,7 +6,7 @@ describe("deterministicPartitionKey", () => {
     expect(trivialKey).toBe("0");
   });
 
-  it("returns the literal '0' when given an empty event", () => {
+  it("return a valid key when given an empty event", () => {
     const event = {};
     const trivialKey = deterministicPartitionKey(event);
     expect(typeof trivialKey).toBe("string");
