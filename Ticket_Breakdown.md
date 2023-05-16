@@ -100,3 +100,11 @@ id | FacilityId | AgentId (deprecated)   | CustomFacilityAgentIds
  4 |          8 |    304                 | 99
  5 |          8 |     17                 | 43
 ```
+
+
+## Possible tickets:
+
+1. Add Custom ID Field to Agent Profile
+2. Update Shift Metadata to Include Custom Agent ID
+3. Update Report Generation to Use Custom Agent ID
+4. Update Report Submission to Include Custom Agent ID
