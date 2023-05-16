@@ -8,18 +8,17 @@ function getHashKey(data){
 }
 
 function getValidKey(currentKey){
-  if(!currentKey) return getHashKey(TRIVIAL_PARTITION_KEY);
-
-  let key = currentKey;
+  let validKey = (currentKey) ? currentKey : getHashKey(TRIVIAL_PARTITION_KEY);
 
   if(typeof currentKey !== "string") {
-    key = JSON.stringify(currentKey);
+    validKey = JSON.stringify(currentKey);
   }
 
   if (currentKey.length > MAX_PARTITION_KEY_LENGTH) {
-     key = getHashKey(currentKey);
+     validKey = getHashKey(currentKey);
   }
-  return key;
+  
+  return validKey;
 }
 
 function deterministicPartitionKey(event) {
